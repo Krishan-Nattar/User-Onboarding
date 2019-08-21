@@ -5,18 +5,18 @@ import Form from './components/Form';
 
 
 
-const handleUsers = user =>{
+// const handleUsers = user =>{
   
-console.log(user);
-}
+// console.log(user);
+// }
 
 function App() {
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
 
-  
+
   return (
     <div className="App">
-      <Form handleUsers={handleUsers}/>
+      <Form />
     </div>
   );
 }

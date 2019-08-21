@@ -9,23 +9,21 @@ import axios from "axios";
 //     setUser(name)
 // }
 // { values, errors, touched },...props
-const LoginForm = (props) => {
-    let values=props.values;
-    let errors = props.errors;
-    let touched = props.touched;
-    const [user, setUser] = useState([]); 
-    // console.log(props.status)
+const LoginForm = ({errors, touched, values, status}) => {
 
-    // if(props.status != ''){
-    //     setUser(props.status)
-    //     props.setStatus('');
-    // }
+    const [user, setUser] = useState([{name: "Biggy", email:"b@gg.com"}]); 
+    console.log(user[0].name);
+
+    useEffect(()=>{
+        // setUser([...user,status])
+    },[status]);
+
   
   return (
-
+<div>
     <Form className="form-component">
       {touched.name && errors.name && <p>{errors.name}</p>}
-      <Field type="text" name="name" placeholder="Name" />
+      <Field component="input" type="text" name="name" placeholder="Name" />
       {touched.email && errors.email && <p>{errors.email}</p>}
       <Field type="email" name="email" placeholder="Email" />
       {touched.password && errors.password && <p>{errors.password}</p>}
@@ -37,7 +35,10 @@ const LoginForm = (props) => {
       </label>
       <button>Submit</button>
     </Form>
-
+    {user.map(person=>{
+       return <p>{person.name}</p>
+    })}
+    </div>
   );
 };
 
@@ -76,15 +77,13 @@ const FormikLoginForm = withFormik({
       axios
         .post("https://reqres.in/api/users", values)
         .then(res => {
-        //   console.log(res); // Data was created successfully and logs to console
-          resetForm();
+        // Data was created successfully and logs to console
+          
           setSubmitting(false);
           let user = res.data.name;
           let email = res.data.email;
-        //   setStatus({ name: user, email:email });
-        //   setUser([...user, {name:user, email:email}])
-        // handleUser(user, email)
-        //   console.log(props.handleUsers);
+          setStatus({ name: user, email:email });
+          resetForm();
         })
         .catch(err => {
           console.log(err); // There was an error creating the data and logs to console
