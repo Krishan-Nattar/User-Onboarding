@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const LoginForm = ({values, errors, touched}) => {
-    // const [user, setUser] = useState({ username: "", email: "", password: "", agree: "" });        
+    const [user, setUser] = useState({ username: "", email: "", password: "", agree: "" });        
     return ( 
     // <div>
 
