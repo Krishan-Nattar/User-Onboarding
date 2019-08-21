@@ -3,19 +3,16 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-// const handleUser = (name,email) =>{
-//     console.log(name);
-//     console.log(email);
-//     setUser(name)
-// }
-// { values, errors, touched },...props
 const LoginForm = ({errors, touched, values, status}) => {
 
-    const [user, setUser] = useState([{name: "Biggy", email:"b@gg.com"}]); 
-    console.log(user[0].name);
+    const [user, setUser] = useState([]); 
+    // console.log(user[0].name);
 
     useEffect(()=>{
-        // setUser([...user,status])
+        if(status){
+            setUser([...user,status])
+        }
+        
     },[status]);
 
   
@@ -36,7 +33,7 @@ const LoginForm = ({errors, touched, values, status}) => {
       <button>Submit</button>
     </Form>
     {user.map(person=>{
-       return <p>{person.name}</p>
+       return <p key={person.email}>{person.name}</p>
     })}
     </div>
   );
