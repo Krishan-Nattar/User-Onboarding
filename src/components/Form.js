@@ -57,12 +57,12 @@ const FormikLoginForm = withFormik({
   //======END VALIDATION SCHEMA==========
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    console.log(values);
-    if (values.email === "alreadytaken@atb.dev") {
-      setErrors({ email: "That email is already taken" });
-    } else {
+    // console.log(values);
+    // if (values.email === "alreadytaken@atb.dev") {
+    //   setErrors({ email: "That email is already taken" });
+    // } else {
       axios
-        .post("https://yourdatabaseurlgoeshere.com", values)
+        .post("https://reqres.in/api/users", values)
         .then(res => {
           console.log(res); // Data was created successfully and logs to console
           resetForm();
@@ -72,7 +72,7 @@ const FormikLoginForm = withFormik({
           console.log(err); // There was an error creating the data and logs to console
           setSubmitting(false);
         });
-    }
+    // }
     //THIS IS WHERE YOU DO YOUR FORM SUBMISSION CODE... HTTP REQUESTS, ETC.
   }
 })(LoginForm);
